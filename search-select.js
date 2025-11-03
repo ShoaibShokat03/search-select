@@ -64,57 +64,49 @@ class searchSelect {
         // wrapper
         const box = document.createElement("div");
         box.className = "search-select-box";
-        box.style.position = "relative";
-        box.style.display = "inline-block";
-        box.style.width = this.element.style.width || "250px";
+        Object.assign(box.style, {
+            position: "relative",
+            display: "inline-block",
+            width: getComputedStyle(this.element).width || "100%"
+        });
 
         this.element.parentNode.insertBefore(box, this.element);
         box.appendChild(this.element);
 
-        // search input
+        // create search input
         const searchInput = document.createElement("input");
         searchInput.type = "text";
         searchInput.className = "search-select-input";
         searchInput.placeholder = "Type to search...";
-        Object.assign(searchInput.style, {
-            width: "100%",
-            padding: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-            fontSize: "14px",
-            outline: "none",
-            cursor: "text",
-            boxSizing: "border-box",
-            color: "#333",
-            transition: "all 0.2s ease"
-        });
         box.insertBefore(searchInput, this.element);
         this._searchInput = searchInput;
 
-        searchInput.addEventListener("focus", () => {
-            searchInput.style.borderColor = "#007bff";
+        // copy all visible styles from select
+        const selectStyles = window.getComputedStyle(this.element);
+        const copyProps = [
+            "fontSize", "fontFamily", "fontWeight", "color", "backgroundColor",
+            "border", "borderRadius", "padding", "outline", "boxShadow",
+            "height", "lineHeight", "width"
+        ];
+        copyProps.forEach(prop => {
+            searchInput.style[prop] = selectStyles[prop];
         });
-        searchInput.addEventListener("blur", () => {
-            searchInput.style.borderColor = "#ccc";
-        });
+        searchInput.style.boxSizing = "border-box";
 
-        // dropdown style (fixed height, no auto adjustment)
+        // dropdown styling
         Object.assign(this.element.style, {
             position: "absolute",
             top: "100%",
             left: "0",
             width: "100%",
             height: "auto",
-            maxHeight: "600px", // fixed dropdown height 👇
+            maxHeight: "400px",
             overflowY: "auto",
             border: "1px solid #ccc",
             background: "#fff",
             zIndex: "9999",
             display: "none",
-            cursor: "pointer",
-            borderRadius: "5px",
-            boxSizing: "border-box",
-            marginTop: "3px"
+            cursor: "pointer"
         });
 
         this.element.setAttribute("multiple", true);
@@ -140,13 +132,12 @@ class searchSelect {
             this.element.style.display = this.filteredOptions.length ? "block" : "none";
         });
 
-        // change selection
+        // selection update
         this.element.addEventListener("change", () => {
             const selected = Array.from(this.element.selectedOptions)
                 .map(opt => opt.text)
                 .join(", ");
             searchInput.value = selected;
-            searchInput.style.background = selected ? "#e7f1ff" : "#fff";
         });
     }
 
