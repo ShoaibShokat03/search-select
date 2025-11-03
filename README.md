@@ -22,10 +22,13 @@ It automatically waits for options to load dynamically (like an image `onload`),
 
 ### 1. Include the script (via CDN or locally)
 
-You can host it yourself **or** use a free CDN (after you push to GitHub):
+use this cdn to include in your website or web app
 
-````html
+```html
 <script src="https://cdn.jsdelivr.net/gh/ShoaibShokat03/search-select/search-select.js"></script>
+```
+
+## Example
 
 ```html
 <!DOCTYPE html>
@@ -48,4 +51,4 @@ You can host it yourself **or** use a free CDN (after you push to GitHub):
     </script>
   </body>
 </html>
-````
+```
