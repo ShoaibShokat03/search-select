@@ -163,6 +163,8 @@ class searchSelect {
         this.element.setAttribute("multiple", true);
         this.element.style.cursor = "pointer";
         this.element.style.height="auto";
+        this.element.maxHeight="auto";
+        this.element.maxHeight="400px";
 
         // event handlers (use named handlers so refresh doesn't attach duplicates)
         if (!this._handlersAttached) {
