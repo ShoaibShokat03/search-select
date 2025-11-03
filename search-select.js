@@ -61,6 +61,7 @@ class searchSelect {
     }
 
     makeSearchable() {
+        // wrapper
         const box = document.createElement("div");
         box.className = "search-select-box";
         box.style.position = "relative";
@@ -70,7 +71,7 @@ class searchSelect {
         this.element.parentNode.insertBefore(box, this.element);
         box.appendChild(this.element);
 
-        // Create search input
+        // search input
         const searchInput = document.createElement("input");
         searchInput.type = "text";
         searchInput.className = "search-select-input";
@@ -97,14 +98,14 @@ class searchSelect {
             searchInput.style.borderColor = "#ccc";
         });
 
-        // style dropdown
+        // dropdown style (fixed height, no auto adjustment)
         Object.assign(this.element.style, {
             position: "absolute",
             top: "100%",
             left: "0",
             width: "100%",
-            maxHeight: "400px",
             height: "auto",
+            maxHeight: "600px", // fixed dropdown height 👇
             overflowY: "auto",
             border: "1px solid #ccc",
             background: "#fff",
@@ -116,20 +117,20 @@ class searchSelect {
             marginTop: "3px"
         });
 
-        // dynamic auto height
-        this.element.size = this.element.options.length > 10 ? 10 : this.element.options.length;
         this.element.setAttribute("multiple", true);
 
-        // Dropdown show/hide logic
+        // show dropdown
         searchInput.addEventListener("focus", () => {
             this.renderOptions(this.filteredOptions);
             this.element.style.display = "block";
         });
 
+        // hide dropdown
         searchInput.addEventListener("blur", () => {
             setTimeout(() => (this.element.style.display = "none"), 200);
         });
 
+        // filter logic
         searchInput.addEventListener("input", () => {
             const query = searchInput.value.trim().toLowerCase();
             this.filteredOptions = this.allOptions.filter(opt =>
@@ -139,6 +140,7 @@ class searchSelect {
             this.element.style.display = this.filteredOptions.length ? "block" : "none";
         });
 
+        // change selection
         this.element.addEventListener("change", () => {
             const selected = Array.from(this.element.selectedOptions)
                 .map(opt => opt.text)
