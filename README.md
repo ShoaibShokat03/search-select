@@ -24,4 +24,5 @@ It automatically waits for options to load dynamically (like an image `onload`),
 You can host it yourself **or** use a free CDN (after you push to GitHub):
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/YOUR_GITHUB_USERNAME/search-select/search-select.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ShoaibShokat03/search-select/search-select.js"></script>
+
