@@ -161,6 +161,8 @@ class searchSelect {
             display: "none"
         });
         this.element.setAttribute("multiple", true);
+        this.element.style.cursor = "pointer";
+        this.element.style.height="auto";
 
         // event handlers (use named handlers so refresh doesn't attach duplicates)
         if (!this._handlersAttached) {
