@@ -14,15 +14,38 @@ It automatically waits for options to load dynamically (like an image `onload`),
 ✅ Smart auto-initialization (waits until options load)  
 ✅ Refresh support when you update options dynamically  
 ✅ Fully styleable and responsive  
-✅ Works in all modern browsers  
+✅ Works in all modern browsers
 
 ---
 
 ## 💡 Usage
 
 ### 1. Include the script (via CDN or locally)
+
 You can host it yourself **or** use a free CDN (after you push to GitHub):
 
-```html
+````html
 <script src="https://cdn.jsdelivr.net/gh/ShoaibShokat03/search-select/search-select.js"></script>
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Select Demo</title>
+    <script src="https://cdn.jsdelivr.net/gh/ShoaibShokat03/search-select/search-select.js"></script>
+  </head>
+  <body>
+    <select id="countrySelect">
+      <option value="pk">Pakistan</option>
+      <option value="us">United States</option>
+      <option value="uk">United Kingdom</option>
+      <option value="in">India</option>
+    </select>
+
+    <script>
+      new searchSelect("#countrySelect");
+    </script>
+  </body>
+</html>
+````
