@@ -67,15 +67,21 @@ makeSearchable() {
         top: "100%",
         left: "0",
         width: "100%",
-        height: "auto",
         maxHeight: "400px",
+        minHeight: "auto",
+        height: "auto",
         overflowY: "auto",
         border: "1px solid #ccc",
         background: "#fff",
         zIndex: "9999",
         display: "none",
-        cursor: "pointer"
+        cursor: "pointer",
+        boxSizing: "border-box"
     });
+
+    // ⚡ force browser to calculate auto height correctly
+    this.element.size = this.element.options.length > 10 ? 10 : this.element.options.length;
+
     this.element.setAttribute("multiple", true);
 
     // Event handlers (same as before) ↓
